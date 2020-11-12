@@ -43,4 +43,4 @@ After running these commands you can view the deployment and grab the url to acc
 kubectl get all
 ```
 
-![wireframe](/wireframe.jpeg)
+![wireframe](/wireframe.png)
