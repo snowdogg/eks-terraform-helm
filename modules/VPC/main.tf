@@ -19,6 +19,8 @@ resource "aws_subnet" "public_subnet1" {
   tags = {
     Name = "EKS VPC Public Subnet 1"
     Environment = var.environment
+    "kubernetes.io/cluster/mainCluster" = "shared"
+    "kubernetes.io/role/elb" = 1
   }
 }
 
@@ -29,6 +31,8 @@ resource "aws_subnet" "public_subnet2" {
   tags = {
     Name = "EKS VPC Public Subnet 1"
     Environment = var.environment
+    "kubernetes.io/cluster/mainCluster" = "shared"
+    "kubernetes.io/role/elb" = 1 
   }
 }
 
@@ -86,22 +90,29 @@ resource "aws_route_table" "private" {
 
 }
 
-resource "aws_route_table_association" "private1" {
+resource "aws_route_table_association" "private" {
+  
   subnet_id      = aws_subnet.private_subnet1.id
   route_table_id = aws_route_table.private.id
 }
+
 
 resource "aws_route_table_association" "private2" {
-  subnet_id      = aws_subnet.private_subnet1.id
+  
+  subnet_id      = aws_subnet.private_subnet2.id
   route_table_id = aws_route_table.private.id
 }
 
-resource "aws_route_table_association" "public1" {
+
+
+resource "aws_route_table_association" "public" {
+  
   subnet_id = aws_subnet.public_subnet1.id
   route_table_id = aws_route_table.default.id
 }
 
 resource "aws_route_table_association" "public2" {
+  
   subnet_id = aws_subnet.public_subnet2.id
   route_table_id = aws_route_table.default.id
 }

@@ -89,7 +89,3 @@ resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryReadOnly" {
   role       = aws_iam_role.nodeRole.name
 }
 
-
-output "kubeconfig-certificate-authority-data" {
-  value = aws_eks_cluster.main.certificate_authority[0].data
-}

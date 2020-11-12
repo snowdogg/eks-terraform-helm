@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: {{ .Values.app_label }}
+  name: {{ .Values.service_name }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+  - port: {{ .Values.port }}
+    protocol: TCP
+    targetPort: {{ .Values.targetPort }}
+    nodePort: {{ .Values.nodePort }}
+  selector:
+    app: {{ .Values.app_label }}
+status:
+  loadBalancer: {}

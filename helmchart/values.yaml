@@ -1,0 +1,19 @@
+app_label: cary-app
+
+deployment_name: cary-deployment
+
+replicaSet: 3
+
+image : snowdogg/artgenerator
+image_name: artgenerator
+
+service_name: cary-service
+
+service:
+  type: LoadBalancer
+#Port for the ClusterIP Service
+port: 80
+#Port for the pods
+targetPort: 80
+#Port for the node to connect to the external service
+nodePort: 30010

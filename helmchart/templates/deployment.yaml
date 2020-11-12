@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: cary-app
+  name: cary-app
+spec:
+  replicas: {{ .Values.replicaSet }}
+  selector:
+    matchLabels:
+      app: cary-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: cary-app
+    spec:
+      containers:
+      - image: snowdogg/artgenerator
+        name: artgenerator
+        resources: {}
+status: {}
